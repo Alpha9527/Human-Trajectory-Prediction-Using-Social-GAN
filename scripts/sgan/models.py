@@ -143,7 +143,7 @@ class Decoder(nn.Module):
             curr_pos = rel_pos + last_pos
 
             if self.pool_every_timestep:
-                decoder_h = state_tuple[0]
+                decoder_h = state_tuple[0] # LSTM编码器输出的隐藏状态（最后一个）
                 pool_h = self.pool_net(decoder_h, seq_start_end, curr_pos)
                 decoder_h = torch.cat(
                     [decoder_h.view(-1, self.h_dim), pool_h], dim=1)
